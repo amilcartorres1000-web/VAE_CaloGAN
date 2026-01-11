@@ -30,9 +30,6 @@ This project implements a deep generative model for simulating electromagnetic c
 - **Training Time**: ~20 minutes on NVIDIA GPU
 - **Generation Speed**: ~10,000 showers/second
 
-![Energy Distribution](docs/images/energy_distribution.png)
-![Sample Comparison](docs/images/sample_comparison.png)
-
 ## 🚀 Quick Start
 
 ### Installation
