@@ -1,0 +1,52 @@
+# Visualize your generated data
+python scripts/visualize_generated.py --input generated_showers.h5 --output_dir my_visualizations
+```
+
+**This will create 5 plots:**
+
+1. ✅ **Energy distribution** - Histogram of total energy per shower
+2. ✅ **Layer energies** - Energy distribution in each layer
+3. ✅ **Sample showers** - Heatmaps of 6 example showers
+4. ✅ **Projections** - X and Y projections showing shower shape
+5. ✅ **Sparsity analysis** - How sparse your data is
+
+---
+
+## 📊 **What Each Plot Shows**
+
+### **1. Energy Distribution**
+```
+Shows: Histogram of total energy per shower
+Why: Check if energy distribution looks realistic
+Your data: Mean = 2266 ± 214 (looks good!)
+```
+
+### **2. Layer Energies**
+```
+Shows: 3 histograms (one per layer)
+Why: Check if energy is distributed correctly across layers
+Your data: 
+  Layer 0: 933 ± 144
+  Layer 1: 646 ± 37
+  Layer 2: 687 ± 63
+```
+
+### **3. Sample Showers**
+```
+Shows: Heatmaps of actual shower patterns
+Why: Visual inspection - do they look like real showers?
+Colors: Hot (red/yellow) = high energy, Dark = zero
+```
+
+### **4. Projections**
+```
+Shows: 1D plots of shower shape
+Why: Check spatial distribution
+Expected: Peak in center, falls off at edges
+```
+
+### **5. Sparsity Analysis**
+```
+Shows: How many zeros vs non-zeros
+Why: Real calorimeter data is ~92% zeros
+Your data: 77% zeros (slightly dense, but okay)

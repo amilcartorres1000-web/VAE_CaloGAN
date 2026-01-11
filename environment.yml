@@ -1,0 +1,35 @@
+name: VAE
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  # Python
+  - python=3.10
+  
+  # Core ML/Scientific
+  - pytorch>=2.0.0
+  - numpy>=1.24.0
+  - scipy>=1.10.0
+  
+  # Data handling
+  - h5py>=3.8.0
+  
+  # Visualization
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  
+  # Configuration
+  - pyyaml>=6.0
+  
+  # Utilities
+  - tqdm>=4.65.0
+  
+  # Development tools (optional)
+  - jupyter
+  - ipython
+  
+  # Pip packages
+  - pip
+  - pip:
+    - tensorboard>=2.13.0

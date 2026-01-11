@@ -1,0 +1,28 @@
+# Data
+*.hdf5
+*.h5
+eplus.hdf5
+
+# Checkpoints (too large for git)
+checkpoints/
+*.pth
+*.pt
+
+# Outputs
+outputs/
+evaluation_results/
+generated_showers/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log

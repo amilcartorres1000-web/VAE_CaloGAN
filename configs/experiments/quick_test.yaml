@@ -1,0 +1,36 @@
+# Quick test configuration (overrides default.yaml)
+name: quick_test
+output_dir: outputs/quick_test
+
+data:
+  max_events: 1000
+  batch_size: 32
+
+decoder:
+  z_dim: 64
+  channels: [128, 64, 32, 16]
+  output_channels: 3
+  output_size: [12, 96]
+  use_batchnorm: true
+  activation: leaky_relu
+  dropout: 0.0
+  sparsity_threshold: 0.01  # REDUCED from 0.1
+  output_scale: 1.0          # INCREASED from 0.05
+
+loss:
+  loss_type: sparse_vae
+  recon_weight: 10.0          # INCREASED from 1.0 - prioritize reconstruction
+  sparsity_weight: 0.5        # REDUCED from 5.0 - less aggressive sparsity
+  energy_weight: 5.0          # INCREASED from 0.5 - prioritize energy matching
+  kl_annealing: true
+  kl_warmup_epochs: 20
+  kl_max_weight: 0.01         # REDUCED from 0.1 - less regularization
+  nonzero_weight: 10.0        # REDUCED from 50.0
+
+training:
+  epochs: 5
+  checkpoint_interval: 2
+  early_stopping: false
+
+validation:
+  num_samples: 100

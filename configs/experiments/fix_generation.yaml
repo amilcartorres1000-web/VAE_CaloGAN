@@ -1,0 +1,75 @@
+name: fix_generation
+output_dir: outputs/fix_generation
+
+data:
+  h5_path: eplus.hdf5
+  layer_keys: [layer_0, layer_1, layer_2]
+  max_events: 5000            # More data
+  loading_mode: auto
+  cache_size: 1000
+  train_split: 0.9
+  batch_size: 64              # Larger batches
+  num_workers: 4
+  pin_memory: true
+  preprocessing: log1p_norm
+  percentile: 99.0
+
+encoder:
+  input_channels: 3
+  channels: [32, 64, 128]
+  z_dim: 64
+  use_batchnorm: true
+  activation: leaky_relu
+  dropout: 0.0
+
+decoder:
+  z_dim: 64
+  channels: [128, 64, 32, 16]
+  output_channels: 3
+  output_size: [12, 96]
+  use_batchnorm: true
+  activation: leaky_relu
+  dropout: 0.0
+  sparsity_threshold: 0.01    # MUCH LOWER
+  output_scale: 1.0           # NO SCALING
+
+loss:
+  loss_type: sparse_vae
+  recon_weight: 10.0
+  sparsity_weight: 0.1        # VERY LOW
+  energy_weight: 5.0
+  kl_annealing: true
+  kl_warmup_epochs: 10
+  kl_max_weight: 0.01
+  nonzero_weight: 5.0
+
+optimizer:
+  optimizer: adamw
+  lr: 0.0001                  # Lower learning rate (1e-4)
+  weight_decay: 0.00001       # 1e-5
+  betas: [0.9, 0.999]
+  use_scheduler: true
+  scheduler_type: reduce_on_plateau
+  scheduler_factor: 0.5
+  scheduler_patience: 5
+
+training:
+  epochs: 50                  # More epochs
+  device: cuda
+  seed: 42
+  grad_clip: 5.0              # Higher clip threshold
+  log_interval: 10
+  checkpoint_interval: 5
+  checkpoint_dir: checkpoints/fix_generation
+  save_best_only: false
+  early_stopping: true
+  patience: 15
+  monitor_metric: val_ks_stat
+  use_amp: false
+
+validation:
+  val_interval: 1
+  num_samples: 1000
+  compute_ks: true
+  compute_energy_stats: true
+  compute_sparsity: true

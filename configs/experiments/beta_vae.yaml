@@ -1,0 +1,23 @@
+name: beta_vae_test
+output_dir: outputs/beta_vae_test
+
+data:
+  h5_path: eplus.hdf5
+  max_events: 5000
+  batch_size: 64
+
+encoder:
+  z_dim: 128  # Larger latent space
+
+decoder:
+  z_dim: 128
+  sparsity_threshold: 0.0     # NO THRESHOLD
+  output_scale: 1.0           # NO SCALING
+
+loss:
+  loss_type: beta_vae         # SIMPLER LOSS
+  kl_max_weight: 0.1          # This becomes beta
+
+training:
+  epochs: 50
+  lr: 0.0001  # 1e-4
