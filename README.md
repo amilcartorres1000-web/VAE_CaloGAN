@@ -181,7 +181,7 @@ The model is validated using physics-motivated metrics:
 4. **Layer-wise Energy**: Per-layer energy distributions
 5. **Spatial Structure**: Visual inspection of shower shapes
 
-## Evaluation Note
+## ⚠️Evaluation Note
 
 **Training Metrics (Final - Epoch 30)**
 - KS Statistic: 0.022 (excellent agreement!)
